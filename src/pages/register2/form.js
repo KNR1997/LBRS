@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import bgImg from "../../assets/signup.jpg";
-import { useForm } from "react-hook-form";
 import "./form.css";
 import axiosClient from "../../api/axiosConfig";
-import { tr } from "date-fns/locale";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 

@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Hotel from "./pages/hotel/Hotel";
 import List from "./pages/list/List";
-import Register from "./pages/register/register";
 import Form from "./pages/register2/form";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Login from "./pages/login/login";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -35,6 +35,7 @@ function App() {
           }
         />
         <Route path="/register" element={<Form />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
