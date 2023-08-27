@@ -6,6 +6,7 @@ import Form from "./pages/register2/form";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Login from "./pages/login/login";
+import InterestFields from "./pages/interestFields/InterestFields";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -31,6 +32,14 @@ function App() {
           element={
             <RequireAuth>
               <Hotel />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/interestFields"
+          element={
+            <RequireAuth>
+              <InterestFields />
             </RequireAuth>
           }
         />
