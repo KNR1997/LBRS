@@ -3,8 +3,8 @@ import bgImg from "../../assets/signup.jpg";
 import "./login.css";
 import axiosClient from "../../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();

@@ -7,7 +7,7 @@ import Form from "../../pages/register2/form";
 import Login from "../../pages/login/login";
 import InterestFields from "../../pages/interestFields/InterestFields";
 import { AnimatePresence } from "framer-motion";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 function AnimatedRoutes() {
 

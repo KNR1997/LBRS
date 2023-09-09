@@ -3,8 +3,8 @@ import bgImg from "../../assets/signup.jpg";
 import "./form.css";
 import axiosClient from "../../api/axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 export default function Form() {
   const nameRef = useRef();
