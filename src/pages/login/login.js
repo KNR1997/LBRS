@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import bgImg from "../../assets/signup.jpg";
 import "./login.css";
 import axiosClient from "../../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { motion } from "framer-motion";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,15 +17,15 @@ export default function Login() {
   const postData = async (e) => {
     e.preventDefault();
 
-    const username = user; 
+    const username = user;
     const password = pwd;
 
     try {
-        const b64Encode = btoa(`${username}:${password}`);
+      const b64Encode = btoa(`${username}:${password}`);
       const config = {
-        headers:{
-            Authorization: `Basic ${b64Encode}`
-        }
+        headers: {
+          Authorization: `Basic ${b64Encode}`,
+        },
       };
 
       const resp = await axiosClient.get("/api/v1/auth/me", config);
@@ -42,7 +43,12 @@ export default function Login() {
 
   return (
     <section>
-      <div className="reg">
+      <motion.div
+        className="reg"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="register">
           <div className="col-1">
             <h2>Log In</h2>
@@ -65,7 +71,7 @@ export default function Login() {
             <img src={bgImg} alt="" />
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

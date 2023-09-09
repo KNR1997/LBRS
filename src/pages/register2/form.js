@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import bgImg from "../../assets/signup.jpg";
 import "./form.css";
 import axiosClient from "../../api/axiosConfig";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { motion } from "framer-motion";
 
 export default function Form() {
   const nameRef = useRef();
   const navigate = useNavigate();
-  const {dispatch} = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [validName, setValidName] = useState(false);
@@ -64,9 +65,9 @@ export default function Form() {
 
       const resp = await axiosClient.post("/api/v1/auth/register", userReg);
       console.log(resp);
-      dispatch({type:"LOGIN", payload:resp.data});
+      dispatch({ type: "LOGIN", payload: resp.data });
       setSubmitSuccess("You have registered successfully");
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.log(error);
       setSubmitSuccess("You have not registered successfully " + error);
@@ -75,7 +76,12 @@ export default function Form() {
 
   return (
     <section>
-      <div className="reg">
+      <motion.div
+        className="reg"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="register">
           <div className="col-1">
             <h2>Sign In</h2>
@@ -106,13 +112,18 @@ export default function Form() {
                 placeholder="confirm password"
                 onChange={(e) => setMatchPwd(e.target.value)}
               />
+              <h5>
+                Already have an Account? <Link to="/login">Log In</Link>
+              </h5>
               <button
                 className={
                   !validName || !validUserName || !validPwd || !validMatch
                     ? "inactive-btn"
                     : "active-btn"
                 }
-                disabled={ !validName || !validUserName || !validPwd || !validMatch}
+                disabled={
+                  !validName || !validUserName || !validPwd || !validMatch
+                }
               >
                 Sign In
               </button>
@@ -122,7 +133,7 @@ export default function Form() {
             <img src={bgImg} alt="" />
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
