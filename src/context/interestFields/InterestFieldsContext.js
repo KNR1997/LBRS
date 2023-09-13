@@ -12,7 +12,7 @@ export const InterestFieldsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(InterestFieldsReducer, STATE);
 
   return (
-    <InterestFieldsContext.Provider value={{ fields: state.fields, dispatch }}>
+    <InterestFieldsContext.Provider value={{ state: state, dispatch }}>
       {children}
     </InterestFieldsContext.Provider>
   );
