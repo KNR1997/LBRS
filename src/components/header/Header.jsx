@@ -13,7 +13,7 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = ({ type, subType }) => {
   const [destination, setDestination] = useState("");
@@ -56,17 +56,19 @@ const Header = ({ type, subType }) => {
       >
         {subType === "interestField" ? (
           <>
-          <div className="headerList">
-            <h2>Select your Interest fields</h2>
-          </div>
+            <div className="headerList">
+              <h2>Select your Interest fields</h2>
+            </div>
           </>
         ) : (
           <>
             <div className="headerList">
-              <div className="headerListItem active">
-                <FontAwesomeIcon icon={faBed} />
-                <span>Stays</span>
-              </div>
+              <Link to="/interestFields">
+                <div className="headerListItem active">
+                  <FontAwesomeIcon icon={faBed} />
+                  <span>InterestFields</span>
+                </div>
+              </Link>
               <div className="headerListItem">
                 <FontAwesomeIcon icon={faPlane} />
                 <span>Flights</span>

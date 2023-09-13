@@ -14,7 +14,9 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navContainer">
-        <span className="logo">lamabooking</span>
+        <Link to="/">
+          <span className="logo">lamabooking</span>
+        </Link>
         <div className="navItems">
           {user.currentUser != null ? (
             <button className="navButton" onClick={handleLogout}>
