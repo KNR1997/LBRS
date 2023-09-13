@@ -20,11 +20,14 @@
 }
 
 .navButton{
+  height: 35px;
+  background-color: #0071c2;
+  color: white;
   margin-left: 20px;
   border: none;
+  border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  color: #003580;
 }
 
 a{

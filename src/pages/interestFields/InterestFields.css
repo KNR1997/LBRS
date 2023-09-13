@@ -7,6 +7,7 @@
   }
   
   .listWrapper {
+    height: 75vh;
     width: 100%;
     max-width: 1024px;
     display: flex;
@@ -14,11 +15,11 @@
   }
   
   .listSearch {
+    position: relative;
     flex: 1;
     background-color: #febb02;
     padding: 10px;
     border-radius: 10px;
-    position: sticky;
     top: 10px;
     height: max-content;
   }
@@ -94,7 +95,53 @@
     border: 1px solid #000;
     padding: 20px;
     text-align: center;
-    min-height: 70px;
+    min-height: 100px;
+  }
+
+  .be{
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  .cz{
+    display: block;
+    margin-right: 8px;
+  }
+
+  .do{
+    cursor: pointer;
+    padding: 0px;
+    border: none;
+    border-radius: 100px;
+  }
+
+  .dr{
+    white-space-collapse: collapse;
+    text-wrap: nowrap;
+    border-radius: 100px;
+    position: relative;
+    padding: 8px 16px;
+    line-height: 20px;
+    font-size: 14px;
+    background-color: #F2F2F2;
+    color: #242424;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .interest-fields{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .dm{
+    display: inline;
+    padding-left: 8px;
+    padding-top: 3px;
   }
   
   

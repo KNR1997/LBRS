@@ -8,6 +8,10 @@ import Footer from "../../components/footer/Footer";
 import MailList from "../../components/mailList/MailList";
 import axios from "axios";
 import { AuthContext } from "../../context/auth/AuthContext";
+import camping from "../../assets/camping.jpg";
+import hiking from "../../assets/hiking.jpg";
+import natureWild from "../../assets/nature_wild.jpg";
+import resort from "../../assets/resorts.webp";
 
 function InterestFields() {
   const { dispatch, state } = useContext(InterestFieldsContext);
@@ -32,7 +36,7 @@ function InterestFields() {
 
   const createInterestFields = () => {
     const postData = {
-      "interestArrayList": state.interestFields,
+      interestArrayList: state.interestFields,
     };
 
     // Your username and password
@@ -49,7 +53,9 @@ function InterestFields() {
     };
 
     axios
-      .post("http://localhost:8080/api/v1/interestFields/create", postData, { headers})
+      .post("http://localhost:8080/api/v1/interestFields/create", postData, {
+        headers,
+      })
       .then((response) => {
         // Handle success
         console.log("POST request was successful:", response.data);
@@ -78,18 +84,69 @@ function InterestFields() {
             </div>
           </div>
           <div className="listResult">
-            <div className="grid-container">
+            {/* <div className="grid-container">
               {state.fields.map((field) => {
                 return (
-                  <div
-                    className="grid-item"
-                    key={field.id}
-                    onClick={() => addToLikedFieldList(field)}
-                  >
-                    {field.name}
+                  // <div
+                  //   className="grid-item"
+                  //   key={field.id}
+                  //   onClick={() => addToLikedFieldList(field)}
+                  // >
+                  //   {field.name}
+                  // </div>
+                  <div className="be">
+                    <div className="cz">
+                      <button className="do">
+                        <div className="dr">
+                          business
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 );
               })}
+            </div> */}
+            <div className="interest-fields">
+              <div className="be">
+                <div className="cz">
+                  <button className="do">
+                    <div className="dr">business</div>
+                  </button>
+                </div>
+              </div>
+
+              <div className="be">
+                <div className="cz">
+                  <button className="do">
+                    <div className="dr">business</div>
+                  </button>
+                </div>
+              </div>
+
+              <div className="be">
+                <div className="cz">
+                  <button className="do">
+                    <div className="dr">
+                      business
+                      <div className="dm">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-plus-lg"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
