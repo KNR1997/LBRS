@@ -1,27 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import Header from "../../components/header/Header";
 import "./InterestFields.css";
 import axiosClient from "../../api/axiosConfig";
 import { InterestFieldsContext } from "../../context/interestFields/InterestFieldsContext";
-import Footer from "../../components/footer/Footer";
-import MailList from "../../components/mailList/MailList";
 import axios from "axios";
 import { AuthContext } from "../../context/auth/AuthContext";
-import camping from "../../assets/camping.jpg";
-import hiking from "../../assets/hiking.jpg";
-import natureWild from "../../assets/nature_wild.jpg";
-import resort from "../../assets/resorts.webp";
 
 function InterestFields() {
   const { dispatch, state } = useContext(InterestFieldsContext);
   const { currentUser } = useContext(AuthContext);
+  const [interestedFields, setInterestedFields] = useState([]);
 
   useEffect(() => {
     const getInterestFields = async () => {
       try {
         const resp = await axiosClient.get("/api/v1/interestFields/getAll");
-        console.log(resp);
         dispatch({ type: "GETFIELDS", payload: resp.data });
       } catch (error) {
         console.log(error);
@@ -30,7 +23,7 @@ function InterestFields() {
     getInterestFields();
   }, []);
 
-  const addToLikedFieldList = (field) => {
+  const postInterestedFields = (field) => {
     dispatch({ type: "ADDTOLIKEFIELD", payload: field });
   };
 
@@ -66,92 +59,117 @@ function InterestFields() {
       });
   };
 
+  const handleButtonClick = (interestField) => {
+    if(interestedFields.length === 0){
+      setInterestedFields([...interestedFields, interestField]);
+    } else if(interestedFields.length !== 0 && !checkFieldAdded(interestField)){
+      setInterestedFields([...interestedFields, interestField]);
+    } else {
+      const filteredNumbers = interestedFields.filter((field) => field.id !== interestField.id);
+      setInterestedFields(filteredNumbers);
+    }
+  };
+
+  const checkFieldAdded = (interestField) => {
+    let added = false;
+    for(let i = 0; i < interestedFields.length; i++) {
+      if (interestedFields[i].id === interestField.id){
+        added = true;
+        break;
+      }
+    }
+    return added;
+  }
+
   return (
     <div>
       <Navbar />
-      <Header type="list" subType="interestField" />
+      {/* <Header type="list" subType="interestField" /> */}
       <div className="listContainer">
         <div className="listWrapper">
-          <div className="listSearch">
-            <h2>Liked</h2>
-            <div>
-              {state.interestFields.map((interestField) => {
-                return <div key={interestField.id}>{interestField.name}</div>;
-              })}
-            </div>
-            <div>
-              <button onClick={() => createInterestFields()}>Submit</button>
-            </div>
+          <div className="heading">
+            <h2 className="title">What are you interested in?</h2>
+            <p className="para">Choose three or more.</p>
           </div>
           <div className="listResult">
-            {/* <div className="grid-container">
-              {state.fields.map((field) => {
-                return (
-                  // <div
-                  //   className="grid-item"
-                  //   key={field.id}
-                  //   onClick={() => addToLikedFieldList(field)}
-                  // >
-                  //   {field.name}
-                  // </div>
-                  <div className="be">
-                    <div className="cz">
-                      <button className="do">
-                        <div className="dr">
-                          business
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div> */}
             <div className="interest-fields">
               <div className="be">
                 <div className="cz">
-                  <button className="do">
-                    <div className="dr">business</div>
-                  </button>
-                </div>
-              </div>
-
-              <div className="be">
-                <div className="cz">
-                  <button className="do">
-                    <div className="dr">business</div>
-                  </button>
-                </div>
-              </div>
-
-              <div className="be">
-                <div className="cz">
-                  <button className="do">
-                    <div className="dr">
-                      business
-                      <div className="dm">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-plus-lg"
-                          viewBox="0 0 16 16"
+                  {state.fields.map((interestField, index) => {
+                    if(checkFieldAdded(interestField)) {
+                      return (
+                        <button
+                        key={index}
+                        className="do"
+                        onClick={() => {
+                          handleButtonClick(interestField);
+                        }}
+                      >
+                        <div className={`dr active`}>
+                          {interestField.name}
+                          <div className="dm">
+                            {}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              className="bi bi-check-lg"
+                              viewBox="0 0 16 16"
+                            >
+                              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </button>   )                
+                    } else {
+                      return (
+                        <button
+                          key={index}
+                          className="do"
+                          onClick={() => {
+                            handleButtonClick(interestField);
+                          }}
                         >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </button>
+                          <div className="dr">
+                            {interestField.name}
+                            <div className="dm">
+                              {}
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                className="bi bi-plus-lg"
+                                viewBox="0 0 16 16"
+                              >
+                                <path
+                                  d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    }
+                  })}
                 </div>
+              </div>
+            </div>
+          </div>
+          <div className="continue">
+            <div className="continue-sub">
+              <div className="continue-sub-1">
+                <button
+                  className="continue-btn"
+                  onClick={() => createInterestFields()}
+                >
+                  Continue
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <MailList />
-        <Footer />
       </div>
     </div>
   );
