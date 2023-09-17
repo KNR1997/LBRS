@@ -20,7 +20,19 @@ function InterestFields() {
         console.log(error);
       }
     };
+
+    const getUserLikedFields = async () => {
+      try {
+        const resp = await axiosClient.get("/api/v1/interestFields/getUserLikedInterestFields");
+        const interestFields = resp.data;
+        setInterestedFields([...interestedFields, ...interestFields]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getInterestFields();
+    getUserLikedFields();
   }, []);
 
   const postInterestedFields = (field) => {
@@ -29,7 +41,7 @@ function InterestFields() {
 
   const createInterestFields = () => {
     const postData = {
-      interestArrayList: state.interestFields,
+      interestArrayList: interestedFields,
     };
 
     // Your username and password
@@ -72,15 +84,19 @@ function InterestFields() {
 
   const checkFieldAdded = (interestField) => {
     let added = false;
-    for(let i = 0; i < interestedFields.length; i++) {
-      if (interestedFields[i].id === interestField.id){
-        added = true;
-        break;
+    if(interestedFields != null) {
+      for(let i = 0; i < interestedFields.length; i++) {
+        if (interestedFields[i].id === interestField.id){
+          added = true;
+          break;
+        }
       }
     }
+
     return added;
   }
 
+  console.log(interestedFields);
   return (
     <div>
       <Navbar />
