@@ -96,7 +96,7 @@
   
   .listSearch>button{
     padding: 10px;
-    background-color: #0071c2;
+    background-color: #17cf97;
     color: white;
     border: none;
     width: 100%;
@@ -156,7 +156,7 @@
   }
 
   .active{
-    background-color: #0071c2;
+    background-color: #17cf97;
     color: #F2F2F2;
   }
 

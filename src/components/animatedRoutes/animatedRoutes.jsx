@@ -8,9 +8,9 @@ import Login from "../../pages/login/login";
 import InterestFields from "../../pages/interestFields/InterestFields";
 import { AnimatePresence } from "framer-motion";
 import { AuthContext } from "../../context/auth/AuthContext";
+import NewHome from "../../pages/newHome/NewHome";
 
 function AnimatedRoutes() {
-
   const { currentUser } = useContext(AuthContext);
 
   const RequireAuth = ({ children }) => {
@@ -22,7 +22,7 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
+        = <Route path="/" element={<NewHome />} />
         <Route
           path="/hotels"
           element={
@@ -50,7 +50,7 @@ function AnimatedRoutes() {
         <Route path="/register" element={<Form />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      </AnimatePresence>
+    </AnimatePresence>
   );
 }
 

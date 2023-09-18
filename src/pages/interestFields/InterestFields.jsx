@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
 import "./InterestFields.css";
 import axiosClient from "../../api/axiosConfig";
 import { InterestFieldsContext } from "../../context/interestFields/InterestFieldsContext";
 import axios from "axios";
 import { AuthContext } from "../../context/auth/AuthContext";
+import NavbarNew from "../../components/NEW/NavbarNew";
 
 function InterestFields() {
   const { dispatch, state } = useContext(InterestFieldsContext);
@@ -92,14 +92,12 @@ function InterestFields() {
         }
       }
     }
-
     return added;
   }
 
-  console.log(interestedFields);
   return (
     <div>
-      <Navbar />
+      <NavbarNew />
       {/* <Header type="list" subType="interestField" /> */}
       <div className="listContainer">
         <div className="listWrapper">
