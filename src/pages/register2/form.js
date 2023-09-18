@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import bgImg from "../../assets/signup.jpg";
+import bgImg from "../../assets/sl-peacock.jpg";
 import "./form.css";
 import axiosClient from "../../api/axiosConfig";
 import { Link, useNavigate } from "react-router-dom";

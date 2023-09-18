@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import bgImg from "../../assets/signup.jpg";
+import bgImg from "../../assets/sl-mask.jpg";
 import "./login.css";
 import axiosClient from "../../api/axiosConfig";
 import { useNavigate } from "react-router-dom";

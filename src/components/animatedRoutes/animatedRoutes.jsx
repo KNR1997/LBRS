@@ -9,6 +9,7 @@ import InterestFields from "../../pages/interestFields/InterestFields";
 import { AnimatePresence } from "framer-motion";
 import { AuthContext } from "../../context/auth/AuthContext";
 import NewHome from "../../pages/newHome/NewHome";
+import Beach from "../../pages/beach/Beach";
 
 function AnimatedRoutes() {
   const { currentUser } = useContext(AuthContext);
@@ -23,6 +24,14 @@ function AnimatedRoutes() {
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         = <Route path="/" element={<NewHome />} />
+        <Route
+          path="/beaches"
+          element={
+            <RequireAuth>
+              <Beach />
+            </RequireAuth>
+          }
+        />
         <Route
           path="/hotels"
           element={

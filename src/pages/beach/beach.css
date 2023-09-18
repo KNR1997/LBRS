@@ -1,0 +1,91 @@
+.title-1{
+    text-align: center;
+    margin: 10px 0 15px 0;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#field {
+	background-image: url(../../assets/sl-beach.jpg);
+	background-size: cover;
+	background-position: top center;
+	position: relative;
+	z-index: 1;
+}
+#field::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	opacity: 0.6;
+	z-index: -1;
+}
+#field h1,p{
+    color: #fff;
+    text-align: center;
+}
+#field h1 {
+	display: block;
+	font-size: 3rem;
+	position: relative;
+}
+#field h3 {
+	display: block;
+	width: fit-content;
+	font-size: 1rem;
+	position: relative;
+}
+.field-hero{
+    min-width: 500px;
+}
+.field-hero h1{
+    margin-bottom: 0;
+    max-width: 750px;
+    letter-spacing: .12em;
+}
+.field-hero-description{
+    padding: 37px 60px;
+    border: 4px solid white;
+    background-color: rgba(46, 44, 44, 0.5);
+    text-transform: uppercase;
+}
+
+.row::after,
+.row::before{
+    display: table;
+    content: '';
+}
+#description-1{
+    padding: 10px 0;
+}
+#description-1 .description-1 {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 50px;
+	justify-content: flex-start;
+}
+.description-1{
+    justify-content: center;
+    align-items: center;
+}
+
+.description-1 p{
+    color: black;
+    margin-bottom: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns with equal width */
+    grid-gap: 10px; /* Spacing between grid items */
+}
+
+.grid-item {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
