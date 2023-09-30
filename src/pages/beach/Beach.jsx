@@ -3,6 +3,8 @@ import "./beach.css";
 import NavbarNew from "../../components/NEW/NavbarNew";
 import axios from "axios";
 import GridItem from "../../components/gridItem/GridItem";
+import SeaTurtleIcon from "../../components/svgIcons/SeaTurtleIcon";
+import PalmTreeIcon from "../../components/svgIcons/PalmTreeIcon";
 
 function Beach() {
   const [beaches, setBeaches] = useState([]);
@@ -36,10 +38,10 @@ function Beach() {
         <div id="field">
           <div className="field container">
             <div className="field-hero">
-              <ul className="field-hero-icons">
-                <li></li>
-                <li></li>
-              </ul>
+              <div className="field-hero-icons">
+                <SeaTurtleIcon />
+                <PalmTreeIcon />
+              </div>
               <div className="field-hero-description">
                 <p>Things to do</p>
                 <h1>Beaches</h1>
@@ -88,9 +90,9 @@ function Beach() {
         </div>
       </section>
 
-      {/* <section id="description-1">
-        <div className="description-1 container">
-          <div className="description-1">
+      <section id="explore">
+        <div className="explore container">
+          <div className="explore">
             <div className="title-1">explore beaches</div>
             <div className="parent-container">
               <div className="grid-container">
@@ -108,9 +110,9 @@ function Beach() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
-      <section id="explore-attractions">
+      {/* <section id="explore-attractions">
         <div className="explore-attractions">
           <div className="explore-attractions">
             <div className="title-1">explore beaches</div>
@@ -130,7 +132,7 @@ function Beach() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
