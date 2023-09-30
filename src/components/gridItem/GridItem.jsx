@@ -3,7 +3,7 @@ import './gridItem.css';
 import '../../assets/sri-lankan-leopard-yala.jpg'
 
 const GridItem = ({ backgroundImage, title }) => {
-    console.log(backgroundImage);
+    // console.log(backgroundImage);
     // const style = {
     //   backgroundImage: `url(../../assets/sri-lankan-leopard-yala.jpg)`,
     // };

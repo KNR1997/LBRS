@@ -10,6 +10,7 @@ import { AnimatePresence } from "framer-motion";
 import { AuthContext } from "../../context/auth/AuthContext";
 import NewHome from "../../pages/newHome/NewHome";
 import Beach from "../../pages/beach/Beach";
+import Place from "../../pages/place/Place";
 
 function AnimatedRoutes() {
   const { currentUser } = useContext(AuthContext);
@@ -58,6 +59,7 @@ function AnimatedRoutes() {
         />
         <Route path="/register" element={<Form />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/place" element={<Place />} />
       </Routes>
     </AnimatePresence>
   );
