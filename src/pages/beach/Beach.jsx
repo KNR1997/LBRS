@@ -1,34 +1,20 @@
-import React, { useEffect, useState } from "react";
 import "./beach.css";
 import NavbarNew from "../../components/NEW/NavbarNew";
-import axios from "axios";
 import GridItem from "../../components/gridItem/GridItem";
 import SeaTurtleIcon from "../../components/svgIcons/SeaTurtleIcon";
 import PalmTreeIcon from "../../components/svgIcons/PalmTreeIcon";
+import { useQuery } from "@tanstack/react-query";
+import { fetchBeaches } from "../../api/beach";
 
 function Beach() {
-  const [beaches, setBeaches] = useState([]);
+  const { data: beachList, isLoading } = useQuery({
+    queryFn: () => fetchBeaches(),
+    queryKey: ["beaches"],
+  });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          process.env.REACT_APP_API_URL + "/beaches?populate=*",
-          {
-            headers: {
-              Authorization: "bearer " + process.env.REACT_APP_API_TOKEN,
-            },
-          }
-        );
-        setBeaches(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
-
-  console.log(beaches);
+  if (isLoading) {
+    console.log("Loading");
+  }
 
   return (
     <div>
@@ -96,12 +82,12 @@ function Beach() {
             <div className="title-1">explore beaches</div>
             <div className="parent-container">
               <div className="grid-container">
-                {beaches.map((beach, key) => {
+                {beachList?.data?.map((beach) => {
                   const attributes = beach.attributes;
-                  console.log(attributes);
                   return (
                     <GridItem
-                      backgroundImage={attributes.cover.data.attributes.url}
+                      key={beach.id}
+                      // backgroundImage={attributes.cover.data.attributes.url}
                       title={attributes.title}
                     />
                   );
@@ -111,28 +97,6 @@ function Beach() {
           </div>
         </div>
       </section>
-
-      {/* <section id="explore-attractions">
-        <div className="explore-attractions">
-          <div className="explore-attractions">
-            <div className="title-1">explore beaches</div>
-            <div className="places">
-              <div className="grid-container">
-                {beaches.map((beach, key) => {
-                  const attributes = beach.attributes;
-                  console.log(attributes);
-                  return (
-                    <GridItem
-                      backgroundImage={attributes.cover.data.attributes.url}
-                      title={attributes.title}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 }
