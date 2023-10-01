@@ -20,6 +20,7 @@ function NavbarNew() {
           <ul id="navbar" className={clickState ? "#navbar active" : "#navbar"}>
             <li><Link to='/interestFields'>InterestFields</Link></li>
             <li><Link to='/beaches'>Beaches</Link></li>
+            <li><Link to='/place'>Place</Link></li>
             <li><a href="index.html">Blog</a></li>
             <li><a href="index.html">About</a></li>
             <li><RegisterButton /></li>

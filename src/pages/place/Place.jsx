@@ -4,6 +4,10 @@ import NavbarNew from "../../components/NEW/NavbarNew";
 import PinLocationIcon from "../../components/svgIcons/PinLocationIcon";
 import CursorIcon from "../../components/svgIcons/CursorIcon";
 import RedirectIcon from "../../components/svgIcons/RedirectIcon";
+import FacebookIcon from "../../components/svgIcons/FacebookIcon";
+import TwitterIcon from "../../components/svgIcons/TwitterIcon";
+import InstagramIcon from "../../components/svgIcons/InstagramIcon";
+import YoutubeIcon from "../../components/svgIcons/YoutubeIcon";
 
 function Place() {
   return (
@@ -34,7 +38,15 @@ function Place() {
                 </div>
                 <div className="social">
                   <RedirectIcon />
-                  <div>Social</div>
+                  <div className="social-title">Social</div>
+                  <div>
+                    <div className="social-media-icons">
+                      <FacebookIcon />
+                      <TwitterIcon />
+                      <InstagramIcon />
+                      <YoutubeIcon />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
