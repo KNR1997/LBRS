@@ -5,6 +5,7 @@ import SeaTurtleIcon from "../../components/svgIcons/SeaTurtleIcon";
 import PalmTreeIcon from "../../components/svgIcons/PalmTreeIcon";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBeaches } from "../../api/beach";
+import { Link } from "react-router-dom";
 
 function Beach() {
   const { data: beachList, isLoading } = useQuery({
@@ -85,11 +86,15 @@ function Beach() {
                 {beachList?.data?.map((beach) => {
                   const attributes = beach.attributes;
                   return (
-                    <GridItem
-                      key={beach.id}
-                      // backgroundImage={attributes.cover.data.attributes.url}
-                      title={attributes.title}
-                    />
+                    <li>
+                      <Link to={`/place/${beach.id}`}>
+                        <GridItem
+                          key={beach.id}
+                          // backgroundImage={attributes.cover.data.attributes.url}
+                          id={beach.id}
+                        />
+                      </Link>
+                    </li>
                   );
                 })}
               </div>

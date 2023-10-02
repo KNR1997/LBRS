@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Home from "../../pages/home/Home";
 import Hotel from "../../pages/hotel/Hotel";
 import List from "../../pages/list/List";
 import Form from "../../pages/register2/form";
@@ -59,7 +58,7 @@ function AnimatedRoutes() {
         />
         <Route path="/register" element={<Form />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/place" element={<Place />} />
+        <Route path="/place/:id" element={<Place />} />
       </Routes>
     </AnimatePresence>
   );

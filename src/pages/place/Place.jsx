@@ -10,14 +10,24 @@ import InstagramIcon from "../../components/svgIcons/InstagramIcon";
 import YoutubeIcon from "../../components/svgIcons/YoutubeIcon";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import img1 from "../../assets/sri-lankan-leopard-yala.jpg";
-import img2 from "../../assets/sl-beach.jpg";
-import img3 from "../../assets/hiking.jpg";
-import img4 from "../../assets/nature_wild.jpg";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
+import { useParams } from "react-router-dom";
+import { usePlaceData } from "../../hooks/usePlaceData";
 
 function Place() {
+  const { id } = useParams();
+  console.log("id to search place", id);
+  const { isLoading, data, isError } = usePlaceData(id);
+
+  if (isLoading) {
+    console.log("Loading");
+  }
+
+  if (isError) {
+    console.log("error");
+  }
+
   return (
     <div>
       <NavbarNew />
@@ -28,7 +38,9 @@ function Place() {
             <div className="place box">
               <div className="layer-1">
                 <div className="title-field">Beaches</div>
-                <div className="place-name">Nilaveli Beach</div>
+                <div className="place-name">
+                  {data?.data[0].attributes.title} Beach
+                </div>
               </div>
               <div className="layer-2">
                 <CursorIcon />
@@ -66,34 +78,13 @@ function Place() {
         <div id="description">
           <div className="description container">
             <div className="box-1">
-              <h2 className="title">Nilaveli Beach</h2>
-              <div className="paragraph">
-                Tucked away between glamorous Port Douglas and the vast
-                wilderness of the World Heritage listed Daintree National Park
-                is the sleepy beachside community of Newell Beach.
-                <br /> Newell Beach boasts spectacular views to Port Douglas in
-                the south and the lighthouse on Low Isles to the east. The two
-                and a half kilometre beach is clean and pristine and is bordered
-                to the north and south by estuaries.
-                <br /> Not far to the west you’ll discover the crystal clear
-                rock pools of Mossman Gorge National Park, picturesque Daintree
-                Village, and ancient world of the Daintree Rainforest.
-                <br /> Fishermen are well catered for with boat ramps at the
-                northern end of the beach and at Saltwater Creek. The nearby
-                estuaries are brimming with good eating fish but remember to be
-                on the lookout for crocodiles at all times. Sitting at the mouth
-                of the mighty Daintree River, nearby Snapper Island is a Mecca
-                for local anglers. Barramundi can be found in nearby Daintree
-                River and fishing off the beach can also prove rewarding.
-                <br /> Newell Beach has a convenience store and for groceries,
-                banks, post offices, hairdressers and for anything else, the
-                sugar town of Mossman is just minutes up the road.
-                <br /> On site vans and self contained units can be found at the
-                local caravan park and there are also beachside holiday houses
-                for rent.
-                <br /> Newell Beach is only one and a half hour’s drive north of
-                the Cairns International Airport and just 10 minutes from Port
-                Douglas. details
+              <div>
+                <h2 className="title">
+                  {data?.data[0].attributes.title} Beach
+                </h2>
+                <div className="paragraph">
+                  {data?.data[0].attributes.description}
+                </div>
               </div>
             </div>
           </div>
@@ -134,20 +125,15 @@ function Place() {
                 modules={[Autoplay, Pagination, Navigation]}
                 className="mySwiper"
               >
-                <SwiperSlide>
-                  <div className="slide">
-                    <img src={img1}></img>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src={img2}></img>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src={img3}></img>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src={img4}></img>
-                </SwiperSlide>
+                {data?.data[0].attributes.images.data.map((place) => {
+                  return (
+                    <SwiperSlide key={place.id}>
+                      <div className="slide">
+                        <img src={place?.attributes.url} alt=""></img>
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
             </div>
           </div>
