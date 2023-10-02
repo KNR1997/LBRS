@@ -28,12 +28,16 @@ function Place() {
     console.log("error");
   }
 
+  const style = {
+    backgroundImage: `url(${data?.data[0].attributes.cover.data.attributes.url})`,
+  };
+
   return (
     <div>
       <NavbarNew />
 
       <section id="place">
-        <div id="place">
+        <div id="place" style={style}>
           <div className="place container">
             <div className="place box">
               <div className="layer-1">
