@@ -14,7 +14,7 @@ function InterestFields() {
   useEffect(() => {
     const getInterestFields = async () => {
       try {
-        const resp = await axiosClient.get("/api/v1/interestFields/getAll");
+        const resp = await axiosClient.get("/api/v1/interestFields/getAllInterestFields");
         dispatch({ type: "GETFIELDS", payload: resp.data });
       } catch (error) {
         console.log(error);
